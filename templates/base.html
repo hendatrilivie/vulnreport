@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">Vulnerability Report</h1>
+
+        <form class="ui form" action="/add" method="post">
+            <div class="field">
+                <label>Vulnerability Name</label>
+                <input type="text" name="title" placeholder="Enter Vulnerability Name"><br>
+                <label>Vulnerability Details</label>
+                <textarea name="details" id="details" cols="10" rows="5" placeholder="Enter Details"></textarea><br>
+                <label>Countermeasures</label>
+                <textarea name="counter" id="counter" cols="10" rows="5" placeholder="Enter Countermeasures"></textarea><br>
+                <label>CVSS Score</label>
+                <input type="text" name="score" placeholder="Enter CVSS Score"><br>
+                <label>Finder</label>
+                <input type="text" name="finder" placeholder="Enter Finder Name "><br>
+            </div>
+            <button class="ui blue button" type="submit">Add</button>
+        </form>
+
+        <hr>
+
+        {% for todo in todo_list %}
+        <div class="ui segment">
+            <p class="ui big header">{{todo.id }} | {{ todo.title }}</p>
+            <p>Details: {{todo.details }}</p>
+            <p>Countermeasures: {{todo.counter }}</p>
+            <p>CVSS Score: {{todo.score }}</p>
+            <p>Finder: {{todo.finder }} </p>
+            
+            <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
